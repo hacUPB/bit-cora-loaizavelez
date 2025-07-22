@@ -13,3 +13,6 @@ Punto3.
 
 Punto4.
 ![ejercicio_4](Prueba_4.png)
+
+punto5.
+![ejercicio_5](Prueba_5.png)
