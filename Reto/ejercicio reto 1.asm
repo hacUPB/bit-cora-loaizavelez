@@ -32,4 +32,18 @@ D=D+A
 @2
 M=D
 
-//Punto 6
+//Punto 6 Si el valor almacenado en D es igual a 0 salta a la posición 100 de la ROM.
+
+@0
+D=M
+@100
+D;JMP
+
+//Punto 7 Si el valor almacenado en la posición 100 de la RAM es menor a 100 salta a la posición 20 de la ROM.
+
+@100
+D=M
+@16
+D=D-A 
+@20
+D;JLT
