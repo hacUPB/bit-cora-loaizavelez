@@ -1,0 +1,12 @@
+@R0
+D=M
+@JMP
+D;JGE
+@R1
+M=–1
+@END
+0;JMP
+(POS)
+@R1
+M=1
+(END)

@@ -16,3 +16,9 @@ Punto4.
 
 punto5.
 ![ejercicio_5](Prueba_5.png)
+
+
+
+
+punto 9.
+![ejercicio_9](Prueba_9.png)
