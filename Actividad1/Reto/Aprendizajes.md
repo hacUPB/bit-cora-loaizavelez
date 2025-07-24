@@ -53,4 +53,4 @@ Aqui aprendi que se los pixeles son traducidos al lenguaje ensamblador y que cad
 
 Punto 19.
 ![ejercicio19](Prueba_19.png)
-No se pudo hacer, hubo errores que impedian la correcta interpretación del codigo.
+No se pudo hacer, hubo errores que impedian la correcta interpretación del codigo. En principio la explicación de Copilot dice que se encarga de detectar la letra "D" pero no me dice el proposito especifico, dice que siguie patrones en la pantalla y se encarga de dibujar.
