@@ -1,9 +1,9 @@
 @R0
 D=M
-@JMP
+@POS 
 D;JGE
 @R1
-M=–1
+M=-1
 @END
 0;JMP
 (POS)
