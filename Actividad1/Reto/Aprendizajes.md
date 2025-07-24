@@ -17,8 +17,9 @@ Punto4.
 punto5.
 ![ejercicio_5](Prueba_5.png)
 
+Reflexión punto 1/7
 
-del punto 1 al punto 7 fue un repaso para ubicar valores en direcciones de meoria RAM y de registro.
+Del punto 1 al punto 7 fue un repaso para ubicar valores en direcciones de meoria RAM y de registro.
 
 
 Punto8.
@@ -43,7 +44,8 @@ en este ejercicio se me despejo la duda de que significaba R0, en principio yo s
 
 
 
-
+Punto 14
+Aprendi que R0 es lo mismo que @0 pero a pesar de todo tienen que guardarse de manera distinta.
 
 
 
