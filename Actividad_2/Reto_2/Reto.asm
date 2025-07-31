@@ -10,8 +10,6 @@ D=A
 @punt
 M=D
 
-@20
-D=A
-@punt
+
 
 
