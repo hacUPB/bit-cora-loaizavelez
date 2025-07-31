@@ -8,7 +8,7 @@
         D;JEQ 
         @KBD //KBD = 24576
         D=M 
-        @105
+        @101
         D=D-A
 		@CLEAR
 		D;JEQ
