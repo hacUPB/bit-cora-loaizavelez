@@ -6,7 +6,10 @@
         D=D-A
         @DRAW
         D;JEQ 
-		D=M
+        @KBD //KBD = 24576
+        D=M 
+        @105
+        D=D-A
 		@CLEAR
 		D;JEQ
 		@LOOP
