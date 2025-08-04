@@ -10,7 +10,7 @@
  
 - ¿Cómo está implementado el ciclo `while`?
 
-    R// Esta implementado con la condicional JGT 100
+    R// Esta implementado con la condicional JGT 100 si el valor de @i es igual valor 100 el condicional acba el ciclo while.
     
 - ¿Cómo se implementa la variable `i`?
 - ¿En qué parte de la memoria se almacena la variable `i`?
