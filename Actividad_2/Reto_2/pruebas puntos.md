@@ -14,16 +14,36 @@
     R// Esta implementado con la condicional JGT 100 si el valor de @i es igual valor 100 el condicional acba el ciclo while.
     
 - ¿Cómo se implementa la variable `i`?
+
+R// este es valor secuencial que se debe sumar en Suma, es decir, 1+..2+...3+...4+, este valor es la referencia que se usa para la suma.
+
 - ¿En qué parte de la memoria se almacena la variable `i`?
+
+R// se guarda en @16
+
+
 - Después de todo lo que has hecho, ¿Qué es entonces una variable?
+
+R// Una variable es un espacio de memoria RAM reservada que guarda datos.
+
+
 - ¿Qué es la dirección de una variable?
+
+R// Es la posición de la memoria que se encuentra la variable.
+
+
 - ¿Qué es el contenido de una variable?
 
+R// en assembly es un número que lo identifica en una dirección de memoria.
 
 
 ## Punto 3
 
-La diferencia en la codificación de bajo nivel es nula,s e secribe de igual manera, sin embargo en lenguajes de alto nivel como C#, 
+La diferencia en la codificación de bajo nivel es nula,s e secribe de igual manera, sin embargo en lenguajes de alto nivel como C# se deben escribir para el ciclo while o ciclo For en el ciclo fOR se toma la variable i y se compara con el 100 hasta se suma de en una unidad y si llega a cumplir la condición acaba el ciclo. El while es un booleano más "sencillo". 
+
+
+## Punto 4
+
 
 
 
