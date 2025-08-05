@@ -25,3 +25,24 @@
 
 La diferencia en la codificación de bajo nivel es nula,s e secribe de igual manera, sin embargo en lenguajes de alto nivel como C#, 
 
+
+
+
+## punto 8
+
+- ¿Qué hace esto `int *pvar;`?
+
+R// este crea la variable puntero que es un entero, esta varaible debe ser asignada a un "Despuntero", es decir tiene que tener el mismo formato o no es valido.
+
+- ¿Qué hace esto `pvar = var;`?
+
+R// lo que esta guardado en Var se asigna en pvar
+
+- ¿Qué hace esto `var2 = *pvar`?
+
+R// coge la dirección del puntero y se lo incrusta a Var2.
+
+- ¿Qué hace esto `pvar = &var3`?
+
+R// se asigna el puntero de var3 y se guarda.
+

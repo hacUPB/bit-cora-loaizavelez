@@ -26,7 +26,7 @@ M=D+M
 
 
 @i
-M=M+1
+M=M+1   // el valor de @i aumenra en 1cada que se completa el loop
 
 @LOOP
 0;JMP
