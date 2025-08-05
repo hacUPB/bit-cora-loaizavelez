@@ -1,5 +1,5 @@
 ## Punto 1
-[sumatoria ejercicio 1](Sumatoria.mp4)
+
 
 - ¿Cómo están implementadas las variables `i` y `sum`?
 
@@ -37,8 +37,7 @@ R// Es la posición de la memoria que se encuentra la variable.
 R// en assembly es un número que lo identifica en una dirección de memoria.
 
 ## Punto 2
-<video controls src="punto_2.mp4" title="Title"></video>
-<video controls src="Sumatoria.mp4" title="Title"></video>
+
 ## Punto 3
 
 La diferencia en la codificación de bajo nivel es nula,s e secribe de igual manera, sin embargo en lenguajes de alto nivel como C# se deben escribir para el ciclo while o ciclo For en el ciclo fOR se toma la variable i y se compara con el 100 hasta se suma de en una unidad y si llega a cumplir la condición acaba el ciclo. El while es un booleano más "sencillo". 
@@ -54,8 +53,7 @@ El programa anterior modifica el contenido de la variable `var` por medio de l
 
 ## Punto 5
 
-<video controls src="prueba_5.mp4" title="Title"></video>
-<video controls src="prueba_5.1.mp4" title="Title"></video>
+
 
 
 ## punto 8
