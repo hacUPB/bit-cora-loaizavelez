@@ -38,15 +38,19 @@ R// en assembly es un número que lo identifica en una dirección de memoria.
 
 ## Punto 2
 <video controls src="punto_2.mp4" title="Title"></video>
-<video controls src="prueba_2.mp4" title="Title"></video>
-
+<video controls src="Sumatoria.mp4" title="Title"></video>
 ## Punto 3
 
 La diferencia en la codificación de bajo nivel es nula,s e secribe de igual manera, sin embargo en lenguajes de alto nivel como C# se deben escribir para el ciclo while o ciclo For en el ciclo fOR se toma la variable i y se compara con el 100 hasta se suma de en una unidad y si llega a cumplir la condición acaba el ciclo. El while es un booleano más "sencillo". 
 
 
 ## Punto 4
+El programa anterior modifica el contenido de la variable `var` por medio de la variable `punt`. `punt` es un puntero porque almacena la dirección de memoria de la variable `var` . En este caso el valor de la variable `var`  será 20 luego de ejecutar `*punt = 20;`. Ahora analiza:
 
+- ¿Cómo se declara un puntero en C++? `int *punt;`. `punt` es una variable que almacenará la dirección de un variable que almacena enteros.
+- ¿Cómo se define un puntero en C++? `punt = &var;`. Definir el puntero es inicializar el valor del puntero, es decir, guardar la dirección de una variable. En este caso `punt` contendrá la dirección de `var` .
+- ¿Cómo se almacena en C++ la dirección de memoria de una variable? Con el operador `&`. `punt = &var;`
+- ¿Cómo se escribe el contenido de la variable a la que apunta un puntero? Con el operador . `punt = 20;`. En este caso como `punt` contiene la dirección de `var`  entonces `punt` a la izquierda del igual indica que quieres actualizar el valor de la variable `var` .
 
 ## Punto 5
 
