@@ -8,6 +8,6 @@ int suma(int a, int b) {
 
 int main() {
    int c = suma(6, 9);
-   std::cout << "El valor de c es: " << c << std::endl;
+   std::cout << "El valor de c es: " << c << std::endl; 
    return 0;
 }
