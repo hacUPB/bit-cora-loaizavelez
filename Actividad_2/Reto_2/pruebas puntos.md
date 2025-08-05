@@ -1,3 +1,4 @@
+## Punto 1
 [sumatoria ejercicio 1](Sumatoria.mp4)
 
 - ¿Cómo están implementadas las variables `i` y `sum`?
@@ -17,4 +18,10 @@
 - Después de todo lo que has hecho, ¿Qué es entonces una variable?
 - ¿Qué es la dirección de una variable?
 - ¿Qué es el contenido de una variable?
+
+
+
+## Punto 3
+
+La diferencia en la codificación de bajo nivel es nula,s e secribe de igual manera, sin embargo en lenguajes de alto nivel como C#, 
 

@@ -1,18 +1,22 @@
-// var = 10
+
 @10
-D=A
-@var
+D=A // se carga el valor de @10 en la dirección A
+@var // luego el @var apunta a esa dirección y guarda el valor de @10 en Var
 M=D
 
-// punt = &var
+
 @var
 D=A
-@punt
+@punt // se guarda la dirección de @Var en el puntero 
 M=D
 
-// *punt = 20
+
 @20
 D=A
-@punt
-A=M    // A = contenido de punt (es decir, dirección de var)
-M=D    // M = 20 → var = 20
+// en esta parte del codigo el @20 esta cargado en A
+
+@punt  
+A=M   
+// Aqui se mira al puntero que tiene guardada la dirección de @var
+M=D    
+//aqui se traslada esa información de @var = @16 pasando a incrustarse al puntero @punt=@17

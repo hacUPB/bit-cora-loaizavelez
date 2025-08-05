@@ -16,7 +16,7 @@ D=M
 @100        // aqui se inicia el loop, @i apunta a @100 y el valor de ambas se resta, Si el valor es menor a 100
 D=D-A
 @END
-D;JGT
+D;JGE
 
 
 @i
