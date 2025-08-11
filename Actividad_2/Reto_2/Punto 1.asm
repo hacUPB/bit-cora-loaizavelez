@@ -20,17 +20,17 @@ D;JGE
 
 
 @i
-D=M
-@sum
-M=D+M
+D=M    
+@sum // se asigna el valor de @i a D y luego se suma al valor de @sum
+M=D+M // el valor de @sum aumenta en cada ciclo del loop
 
 
 @i
 M=M+1   // el valor de @i aumenra en 1cada que se completa el loop
 
-@LOOP
+@LOOP // Se regresa al inicio del loop
 0;JMP
 
 (END)
-@END
-0;JMP
+@END  
+0;JMP // se detiene el programa al llegar a 100
