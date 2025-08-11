@@ -13,8 +13,8 @@ M=D
 (LOOP)
 @i
 D=M
-@100        // aqui se inicia el loop, @i apunta a @100 y el valor de ambas se resta, Si el valor es menor a 100
-D=D-A
+@101        // aqui se inicia el loop, @i apunta a @100 y el valor de ambas se resta, Si el valor es menor a 100
+D=D-A        // debe ser @101 para que la sumatoria sea 5050
 @END
 D;JGE
 

@@ -20,5 +20,5 @@ M=D
 @punt
 A=M     // se saca la dirección del puntero que es 17 y pasa a ser 16 y el valor que esta en var se saca y se guarda en vis.
 D=M      
-@bis
+@bis 
 M=D      
