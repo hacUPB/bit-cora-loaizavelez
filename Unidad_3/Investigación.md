@@ -1,13 +1,28 @@
 ### Actividad 1
 
-R// este programa genera un circulo, este circulo tiene la función de seguir l mouse, cada vez que el mouse se desplaza, genera un nuevo circulo, borrando el más antiguo.
-
+R// este programa genera un circulo, este circulo tiene la función de seguir el mouse, cada vez que el mouse se desplaza el circulo lo sigue.
 
 
 ### Actividad 2
 - ¿Qué fue lo que incluimos en el archivo .h?
 
 R// 
+```c++
+public:
+        void setup(); // se encarga de inicializar el programa.
+        void update(); // se encarga de actualizar en tiempo real para dibujar el objeto. Usualmente está vacia porque el objeto no debe actualizarse contstantemente.
+        void draw(); // es la función encargada de dibujar el objeto.
+
+
+         void mouseMoved(int x, int y ); // Es la función de que permite mover el mouse atraves del canvas.
+        void mousePressed(int x, int y, int button); // Es la función que permite detectar en que momento y en que espacio se presiona el click del mouse.
+
+    private:
+
+        vector<ofVec2f> particles;
+        ofColor particleColor;
+
+```
 
 
 - ¿Cómo funciona la aplicación?
@@ -68,9 +83,6 @@ void ofApp::mouseMoved(int x, int y) {
 si se elimina el particles.erase, ninguno de los circulos generados se eliminara, causando que la pantalla se sature de circulos. Como hipotesis, de seguir generando circulos causara el crasheo del programa.
 
 
-### Actividad 4
-
-R//
 
 
 ### Actividad 5
@@ -126,12 +138,14 @@ En Heap, el objeto persiste hasta que se borre manualmente. El heap tiene la car
 
 ### Actividad 8
 
+R// 
+
+
 ### Actividad 9
 
 R// al presionarse el click, no importa si es el izquiero o el derecho, se genera un circulo donde tiene el nombre de la ubicación de memoria, heap memory. Al apretarse "f" se eliminan los circulos.
 
-R// Comose menciono anteriormente, si en memoria heap no se eliminan manualmente la información de la memoria, se queda almacenada incluso si se cierra el programa, lo que hace la linea de codigo es permitir la eliminación manual de estós objetos. Unicamente si se presiona la tecla f
+R// Comose menciono anteriormente, si en memoria heap no se eliminan manualmente la información de la memoria, se queda almacenada incluso si se cierra el programa, lo que hace la linea de codigo es permitir la eliminación manual de estós objetos. Unicamente si se presiona la tecla f.
 
 
-### Actividad 10
 
