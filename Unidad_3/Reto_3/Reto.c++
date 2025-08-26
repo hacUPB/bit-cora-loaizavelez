@@ -5,7 +5,7 @@ void ofApp::setup() {
     ofBackground(0);
     xStep = yStep = 40;
     distDiv = 100.0f;
-    amplitud = 50.0f;
+    amplitud = 150.0f;
     selectedSphereIndex = -1;
     generateGrid();
 }
@@ -17,52 +17,122 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
+	ofBackground(0);
     cam.begin();
-    for (int i = 0; i < spherePositions.size(); ++i) {
-        if (i == selectedSphereIndex) {
-            ofSetColor(255, 0, 0); // Esfera seleccionada
-        }
-        else {
-            ofSetColor(100, 200, 255); // Esferas normales
-        }
-        ofDrawSphere(spherePositions[i], 5.0);
-    }
-    cam.end();
 
-    if (selectedSphereIndex != -1) {
-        glm::vec3 pos = spherePositions[selectedSphereIndex];
-        ofDrawBitmapStringHighlight("Esfera seleccionada:\nX: " + ofToString(pos.x) +
-            "\nY: " + ofToString(pos.y) +
-            "\nZ: " + ofToString(pos.z), 20, 20);
+
+
+   
+    for (auto& pos  :  spherePositions)
+    {
+        if (sphereSelected && pos == *selectedSpherePosition) 
+        {
+			ofSetColor(100, 0, 255);  
+        }
+        else 
+        {
+            ofSetColor(100,0 , 255);
+        }
+		ofDrawSphere(pos, 5);
     }
+
+
+	/* Experimento de color aleatorio
+    
+    for (auto& pos : spherePositions)
+{
+    if (sphereSelected && pos == *selectedSpherePosition)
+    {
+        // Color fijo para la esfera seleccionada
+        ofSetColor(255, 255, 0); // Amarillo como énfasis
+    }
+    else
+    {
+        // Color aleatorio para las demás
+        int r = ofRandom(0, 255);
+        int g = ofRandom(0, 255);
+        int b = ofRandom(0, 255);
+        ofSetColor(r, g, b);
+    }
+
+    ofDrawSphere(pos, 5);
+}
+
+
+    
+    */
+
+    cam.end();
+   
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
-    if (key == OF_KEY_UP) amplitud += 5;
-    if (key == OF_KEY_DOWN) amplitud -= 5;
-    if (key == OF_KEY_RIGHT) distDiv += 5;
-    if (key == OF_KEY_LEFT) distDiv -= 5;
-    if (key == 'w') yStep += 5;
-    if (key == 's') yStep = max(5, yStep - 5);
-    if (key == 'd') xStep += 5;
-    if (key == 'a') xStep = max(5, xStep - 5);
+    switch (key) {
+
+		//Flechas para ajustar la amplitud y la distancia
+    case OF_KEY_UP:
+        amplitud += 5;
+        break;
+    case OF_KEY_DOWN:
+        amplitud -= 5;
+        break;
+    case OF_KEY_RIGHT:
+        distDiv += 5;
+        break;
+    case OF_KEY_LEFT:
+        distDiv -= 5;
+        break;
+
+		//WASD para ajustar el paso
+    case 'w':
+        yStep += 5;
+        break;
+    case 's':
+        yStep = max(5, yStep - 5);
+        break;
+    case 'd':
+        xStep += 5;
+        break;
+    case 'a':
+        xStep = max(5, xStep - 5);
+        break;
+    }
 
     generateGrid();
 }
 
+
 //--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button) {
+void ofApp::mousePressed(int x, int y, int button)
+{
+    // Convertir las coordenadas del mouse en un rayo 3D
     glm::vec3 rayStart, rayEnd;
     convertMouseToRay(x, y, rayStart, rayEnd);
 
-    selectedSphereIndex = -1;
-    for (int i = 0; i < spherePositions.size(); ++i) {
-        glm::vec3 intersectionPoint;
-        if (rayIntersectsSphere(rayStart, rayEnd - rayStart, spherePositions[i], 5.0, intersectionPoint)) {
-            selectedSphereIndex = i;
-            break;
+    // Comprobar si el rayo intersecta alguna esfera
+    sphereSelected = false;
+
+    for (auto& pos : spherePositions) {
+		glm::vec3 intersectionPoint; // Punto de intersección
+        if (rayIntersectsSphere(rayStart, rayEnd - rayStart, pos, 5.0, intersectionPoint)) {
+			// Seleccionar la esfera 
+			printf("Esfera seleccionada en: (%.2f, %.2f, %.2f)\n", pos.x, pos.y, pos.z);
+			
+			
+           
+			//ofSetColor(255, 0, 0); , NO CAMBIA EL COLOR
+
+
+			
+			
+          
+			
+			
+                
+            
         }
+
     }
 }
 
