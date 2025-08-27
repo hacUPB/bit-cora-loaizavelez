@@ -183,5 +183,5 @@ bool ofApp::rayIntersectsSphere(const glm::vec3& rayStart, const glm::vec3& rayD
 
     float t = (-b - sqrt(discriminant)) / (2.0f * a);
     intersectionPoint = rayStart + t * rayDir;
-    return true;
+    return true; //
 }
