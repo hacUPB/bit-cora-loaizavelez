@@ -7,7 +7,7 @@
 +		[Vista sin formato]	{_Myval2={_Myfirst=0x0000000007caea20 {x=-512.000000 r=-512.000000 s=-512.000000 ...} _Mylast=0x0000000007cb0280 {...} ...} }	std::_Compressed_pair<std::allocator<glm::vec<3,float,0>>,std::_Vector_val<std::_Simple_types<glm::vec<3,float,0>>>,1>
 
 ```
-
+la varaible esta guardado en el vector 3, este vector esta guardado en el stack, lo que significa que cuando termina de recorrer el programa este se destruye, pero, la información queda almacena esta en heap. 
 
 
 ```c++
@@ -15,4 +15,3 @@
 
 
 ```
-
