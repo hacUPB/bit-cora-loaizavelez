@@ -19,8 +19,16 @@ void ofApp::update() {
 void ofApp::draw() {
 	ofBackground(0);
     cam.begin();
+   /* vector<ofColor> palette = {
+        ofColor(255, 0, 0),   // Rojo
+        ofColor(0, 255, 0),   // Verde
+        ofColor(0, 0, 255),   // Azul
+        ofColor(255, 255, 0), // Amarillo
+        ofColor(0, 255, 255), // Cian
+        ofColor(255, 0, 255)  // Magenta
+	};
 
-
+    ofDrawBitmapString("FPS: " + ofToString(ofGetFrameRate(), 2), ofGetWidth() - 80, 20);
 
    
     for (auto& pos  :  spherePositions)
@@ -31,13 +39,13 @@ void ofApp::draw() {
         }
         else 
         {
-            ofSetColor(100,0 , 255);
+            ofSetColor(0,255 , 0);
         }
 		ofDrawSphere(pos, 5);
-    }
+    }*/
 
 
-	/* Experimento de color aleatorio
+	 //Experimento de color aleatorio
     
     for (auto& pos : spherePositions)
 {
@@ -49,9 +57,9 @@ void ofApp::draw() {
     else
     {
         // Color aleatorio para las demás
-        int r = ofRandom(0, 255);
-        int g = ofRandom(0, 255);
-        int b = ofRandom(0, 255);
+        int r = ofRandom(100, 200);
+        int g = ofRandom(80, 200);
+        int b = ofRandom(15, 200);
         ofSetColor(r, g, b);
     }
 
@@ -60,9 +68,20 @@ void ofApp::draw() {
 
 
     
-    */
+    
 
     cam.end();
+
+
+
+    if (sphereSelected )
+    {
+		ofSetColor(255);
+        ofDrawBitmapString("Esfera seleccionada en: ("
+            + ofToString(selectedSpherePosition->x, 2) + ", "
+            + ofToString(selectedSpherePosition->y, 2) + ", "
+			+ ofToString(selectedSpherePosition->z, 2) + ")", 10, 20);
+    }
    
 }
 
@@ -118,10 +137,21 @@ void ofApp::mousePressed(int x, int y, int button)
         if (rayIntersectsSphere(rayStart, rayEnd - rayStart, pos, 5.0, intersectionPoint)) {
 			// Seleccionar la esfera 
 			printf("Esfera seleccionada en: (%.2f, %.2f, %.2f)\n", pos.x, pos.y, pos.z);
+			sphereSelected = true;
+			selectedSpherePosition = &pos;
+
+            if (sphereSelected && pos == *selectedSpherePosition) {
+                ofSetColor(255, 0, 0); 
+            } 
+            else{
+                ofSetColor(0, 0, 255); 
+			}
+            
 			
 			
            
 			//ofSetColor(255, 0, 0); , NO CAMBIA EL COLOR
+
 
 
 			
@@ -173,7 +203,7 @@ void ofApp::convertMouseToRay(int mouseX, int mouseY, glm::vec3& rayStart, glm::
 bool ofApp::rayIntersectsSphere(const glm::vec3& rayStart, const glm::vec3& rayDir,
     const glm::vec3& sphereCenter, float sphereRadius,
     glm::vec3& intersectionPoint) {
-    glm::vec3 oc = rayStart - sphereCenter;
+    glm::vec3 oc = rayStart - sphereCenter; 
     float a = glm::dot(rayDir, rayDir);
     float b = 2.0f * glm::dot(oc, rayDir);
     float c = glm::dot(oc, oc) - sphereRadius * sphereRadius;
@@ -183,5 +213,5 @@ bool ofApp::rayIntersectsSphere(const glm::vec3& rayStart, const glm::vec3& rayD
 
     float t = (-b - sqrt(discriminant)) / (2.0f * a);
     intersectionPoint = rayStart + t * rayDir;
-    return true; //
+    return true;
 }
