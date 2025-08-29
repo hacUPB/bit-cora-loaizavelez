@@ -150,6 +150,12 @@ R// **Stack**
 
 ```
 
+¿Cuándo debo crear objetos en el heap y cuándo en memoria global?
+
+R// para cuando debas usar memoria global, debes primero determinar lo siguiente, ¿cuanto sera la vida util del programa?, las variables globales funcionan para todas las clases, ya que todas tienen acceso a estás, ademas de funcionar para toda la clase en la que este, si por ejemplo el programa es sencillo, no generará problemas a largo plazo, pero si el programa crece, creara conflictos porque se debe usar siempre la misma la variable, con su nombre preciso. 
+
+El heap es dinámico, es decir, va a persistir en todo momento de la compilacón del programa, ademas de poder agregar información tanto como se pueda. Cabe alclarar que al persistir, se debe eliminar la información, si no se hace, ese esapcio de morira seguira siendo utilziado.
+
 ### Actividad 9
 
 R// al presionarse el click, no importa si es el izquiero o el derecho, se genera un circulo donde tiene el nombre de la ubicación de memoria, heap memory. Al apretarse "f" se eliminan los circulos.
