@@ -3,10 +3,10 @@
 //--------------------------------------------------------------
 void ofApp::setup() {
     ofBackground(0);
-    xStep = yStep = 40;
-    distDiv = 100.0f;
-    amplitud = 150.0f;
-    selectedSphereIndex = -1;
+    xStep = yStep = 40; 
+    distDiv = 100.0f; // Distancia entre esferas
+    amplitud = 150.0f; // Amplitud de la onda
+    selectedSphereIndex = -1; 
     generateGrid();
 }
 
@@ -206,7 +206,7 @@ bool ofApp::rayIntersectsSphere(const glm::vec3& rayStart, const glm::vec3& rayD
     glm::vec3 oc = rayStart - sphereCenter; 
     float a = glm::dot(rayDir, rayDir);
     float b = 2.0f * glm::dot(oc, rayDir);
-    float c = glm::dot(oc, oc) - sphereRadius * sphereRadius;
+    float c = glm::dot(oc, oc) - sphereRadius * sphereRadius; 
     float discriminant = b * b - 4 * a * c;
 
     if (discriminant < 0) return false;

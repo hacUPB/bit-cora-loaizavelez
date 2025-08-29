@@ -138,8 +138,17 @@ En Heap, el objeto persiste hasta que se borre manualmente. El heap tiene la car
 
 ### Actividad 8
 
-R// 
+R// **Stack**
 
+```c++
++		[Vista sin formato]	{_Myval2={_Myfirst=0x0000000000701dd0 {offset={...} color={...} size=30.0000000 } _Mylast=0x0000000000701e20 {...} ...} }	std::_Compressed_pair<std::allocator<Cuadro>,std::_Vector_val<std::_Simple_types<Cuadro>>,1>
+
+```
+```c++
++		[Vista sin formato]	{_Myval2={_Myfirst=0x0000000000000000 {???} _Mylast=0x0000000000000000 {???} _Myend=0x0000000000000000 {...} } }	std::_Compressed_pair<std::allocator<Cuadro *>,std::_Vector_val<std::_Simple_types<Cuadro *>>,1>
+
+
+```
 
 ### Actividad 9
 
