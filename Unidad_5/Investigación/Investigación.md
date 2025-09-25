@@ -72,6 +72,29 @@ public:
     R// si los atributos son estáticos, no ocupan espacio, forman parte de la case y se aplican para todas las clases. Las dinámicas en todo caso, deben ser instanciadas, y deben ser eliminadas manualmente, al contario de el estatico, que se eliminan al terminar de correr el programa. 
 
 
+- ¿Los atributos están almacenados de forma contigua?
+
+    R// Si, los atributos estan guardados guardados de manera contigua.
+
+    Direcci¾n de p1: 000000000014F1D8
+    Direcci¾n de p2: 000000000014F1F8
+
+
+    Tama±o de Particle: 8 bytes
+
+
+    Direcci¾n de p1.x: 000000000014F1D8
+    Direcci¾n de p1.y: 000000000014F1DC
+
+- ¿Qué indica el tamaño del objeto sobre su estructura interna?
+
+    R// La cantidad de atributos que almacena.
+
+- Prompt para ChatGPT: ¿Cómo se almacenan los objetos en memoria en C++? Si tengo dos instancias de Particle, ¿Cómo se relacionan sus direcciones de memoria? ¿Los atributos están contiguos?
+
+    R//
+
+
 
 
 ### Sesión 2: ubicación en memoria de datos y métodos
@@ -84,6 +107,31 @@ public:
 
 
 
+- ¿En qué parte de la memoria se encuentran las vtable de cada objeto?
+
+    R// Las vtables están almacenadas en la zona de memoria global, siendo gestionada por el compilador, cada clase con metodos virtuales tiene unicamente una vtable, con punteros a las funciones, incluso con overwrite.
+
+
+- ¿Cómo afecta la presencia de métodos virtuales al tamaño del objeto?
+
+    R// La presencia de métodos virtuales agrega un puntero oculto (vptr) al objeto, lo que:
+     Aumenta el tamaño del objeto en 4 bytes (32 bits) o 8 bytes (64 bits).
+
+- ¿Qué papel juegan las vtables en el polimorfismo?
+
+    R// Al llamarse un metodo virtual, permite que funcione durante el tiempo de ejecución. Permitiendo el poliformismo dinámico. Ya que cada clase tiene sus propios punteros invisibles, que permiten acceder a las vtable. 
+
+
+- ¿Cómo afecta la presencia de métodos virtuales al tamaño del objeto?
+
+    R// Cuando una clase en C++ declara al menos un método virtual, el compilador agrega un puntero oculto llamado vptr a cada instancia de la clase. Este puntero apunta a la vtable correspondiente. Aumentando en consecuencia el tamaño del objeto, **los vptr ocupan un espacio de 8 bytes** si la clase tiene un metodo de **sizeof()** se puede observar el aumento.
+
+
+
+
+- ¿Qué papel juegan las vtables en el polimorfismo?
+
+    R// Son metodos generados por el compilador, dentro de estás tablas se encuentrar punteros que acceden a las funciones, que a su vez deben ser accedidos por los vptr.
 
 
 
@@ -101,37 +149,19 @@ public:
 
 
 
-- ¿Los atributos están almacenados de forma contigua?
-
-R// Si, los atributos estan guardados guardados de manera contigua.
-
-Direcci¾n de p1: 000000000014F1D8
-Direcci¾n de p2: 000000000014F1F8
-
-
-Tama±o de Particle: 8 bytes
-
-
-Direcci¾n de p1.x: 000000000014F1D8
-Direcci¾n de p1.y: 000000000014F1DC
-
-- ¿Qué indica el tamaño del objeto sobre su estructura interna?
-
-R// La cantidad de atributos que almacena.
-
-- Prompt para ChatGPT: ¿Cómo se almacenan los objetos en memoria en C++? Si tengo dos instancias de Particle, ¿Cómo se relacionan sus direcciones de memoria? ¿Los atributos están contiguos?
 
 
 
-- ¿Cómo afectan los datos estáticos al tamaño de la instancia?
-
-R//
-
-- ¿Qué diferencias hay entre datos estáticos y dinámicos en términos de memoria?
 
 
 
-- Prompt para ChatGPT: explícame cómo el uso de variables estáticas y dinámicas en una clase afecta el tamaño de sus instancias. ¿Las variables estáticas ocupan espacio en cada objeto?
+
+
+
+
+
+
+
 
 
 
