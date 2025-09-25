@@ -137,6 +137,48 @@ public:
 
 
 
+### Sesión 3: implementación Interna de Encapsulamiento, Herencia y Polimorfismo
+
+
+- ¿Cómo implementa el compilador el encapsulamiento en C++? Si los miembros privados aún ocupan espacio en el objeto, ¿Qué impide que se acceda a ellos desde fuera de la clase?
+
+
+    R// El encapsulamiento en si mismo no ocultapor si mismo los valores encapsulados, en su lugar el compilador verifica la protección de los datos, si es public, privado o protegido. Lo que impide su acceso a pesar de no ocupar espacio es el mismo compilador, se verifica la protección y se puede acceder modifcando los punteros, violando la protección y puede causar errores de compilación o que el codigo ya no funcione correctamente en tiempo de ejecución.
+
+    - 'argumento': conversión de 'size_t' a 'int'; posible pérdida de datos
+1>(compilando archivo de origen "src/ofApp.cpp")
+ 
+
+- **Hagamos un poco de hackers y rompamos el encapsulamiento**
+
+
+    ![Prueba_1](image.png)
+
+    Directamente se puede ver el error, el intento de romper el encapsulamiento resulta en este error, directamente aún no puede acceder.
+
+
+    ![Segundo error](image-1.png)
+
+    Al momento de agregar el nuevo acceso se produce un nuevo error de compilación.
+
+    Apesar de intentar observar los mensajes en la consola, no sale nada de interes o en su defecto, nada, asi que no puedo verificar si se accedio o no al encapsulamiento.
+
+
+    ![Imagen vacia](image-2.png)
+
+
+
+    ![Texto vacio](image-3.png)
+
+    El poner breakpoints tampoco ayuda, de hecho no funcionan.
+
+
+
+
+
+
+
+
 
 
 
