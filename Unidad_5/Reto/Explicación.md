@@ -3,6 +3,8 @@
 Para este trabajo de arte generativo busco simular la selección de un nivel de mario galaxy, este se componene de un fondo estrellado pero ene ste caso se modificara para que caigan fragmentos de estrella, son las estrellas fugaces, en el centro se encontrara la supere estrella, el comportamiento de las particulas esta dado por, una generación en el plano aleatoriamente capado a maximo 10 estrellas fugaces simultaneas, son eliminadas al momento de terminar su recorrido, la **superestrella** es la más grande y es amarilla, el comportamiento se da con su rotación horizontal.
 
 
+<video controls src="video_demo.mp4" title="Title"></video>
+
 ### Comportamiento del archivo .h
 
 
@@ -94,6 +96,41 @@ El **this** no es el nombre de un atributo de hecho es un puntero oculto de los 
 [ofApp] entidades activas: 1
 
 
-### Como se puede evitar el uso de punteros virtuaales.
+### Como se puede evitar el uso de punteros virtuales.
 
-Dnetro de nuestro codigo hacemos uso de punteros virtuales dentro de las clases superstar o fallingstar, vamos a resolvere eso.
+Dnetro de nuestro codigo hacemos uso de punteros virtuales dentro de las clases superstar o fallingstar, vamos a resolvere eso. La propuesta inical era usar el **CRTP** o **Patrón de Plantilla Curiosamente Recursivo** consiste en usar el poliformismo en tiempo de compilación y no de ejecución siendo mucho más eficiente para el encapsulamiento y herencia de clases. Los metodos virtuales son menos eficientes para trabajos de arte generativo, por su complejidad interna, un metodo virtual se puede decir que esta enlazada a una tabla virtual por un puntero oculto, cada vez que se quiera invocar el objeto, crearlo o instanciarlo, el puntero oculto debe apuntar al puntero virtual y este a su vez debe llegar al metodo, es muy lento y a su vez, causa que la depuración del programa se vuelva compleja. 
+
+Si se evita el uso de metodos virtuales, se asegura la protección de los atributos privados. Sin que la superclase o clase padre tenga acceso.
+
+
+
+
+![Error](image-4.png)
+
+
+
+### Comportamiento de memoria.
+
+
+![SuperStar](image-5.png)
+
+
+
+![Movimiento](image-6.png)
+
+
+El comportamiento de la memoria al momento de cerrar su forma consume una cantidad de memoria muy diferente al momento de dibujarla, duplica el uso al momento de dibujarla, esto sucede porque sl ser dibujada, el resto de atributos como la creación de sus ojos comienzan actuar.
+
+
+- ¿Cómo influyó el entendimiento de los mecanismos internos de OOP en el proyecto?
+
+    R// Este proyecto es diferente al de los demas, anteriormente se puede decir que era más artesanal y lento, con el uso de punteros, metodos virtuales y pilas para crear partículas o cualquier otro objeto. con POO es diferente, se busca la optimización y la seguridad de los atributos para que no puedan ser modificados desde el exterior o dificultar su acceso. Su uso la herencia para la creación de objetos con una plantilla "global"
+
+- ¿Qué desafíos enfrentaste y cómo los superaste?
+
+    R// Primero hacer aparecer la estrella, su rtoación fue sencilla pero el hecho que se dibujara fue un reto un tanto complicado. También su optimización, para mi fue imposible el que no usara metodos virtuales, intente de todas las formas que no las usara pero al final me soltaba un error. Por ultimo, los ojos, centrarlos en la forma de la estrella fue complicado y requirío apoyo de copilot para poder lograrlo.
+
+
+- ¿Qué aprendiste sobre el equilibrio entre diseño y eficiencia?
+
+    R// Con ayuda de las herencias y el poliformismo acelera el proceso al momento de optimizar, con las herencias el hecho de poder usar atributos o metodos de una superclase ya con parametros establecidos hace que sea mucho más facil el crear nuevas instancias de objetos sin sacrificar memoria. Es como tener un gran molde para todo, puedes crear y crear y nunca habra un retraso. 
