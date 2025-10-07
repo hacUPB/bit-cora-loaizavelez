@@ -29,7 +29,7 @@ Particle* ParticleFactory::createParticle(const std::string& type) {
 
 ```
 
-El patrón de sieño de la factoria no depende de una ubicación específica, es decir, puede estar en el Draw, en el set up o en una clase que cumpla la condición para que se genere la esfera.
+ que cumpla la condición para que se genere la esfera.
 
 
 
@@ -37,15 +37,15 @@ El patrón de sieño de la factoria no depende de una ubicación específica, es
 
 - ¿Qué hace el patrón observer en este caso?
 
-    R//
+    R// Es el encargado de manejar los eventos, si estas suscrito te envía el evento y te lo notifica 
 
 - ¿Qué hace el patrón factory en este caso?
 
-    R// La
+    R// El patrón de diseño de la factoria no depende de una ubicación específica, es decir, puede estar en el Draw, en el set up o en una clase que cumpla la condición para que se genere la esfera. En este caso al presionar una tecla ocurre el evento de atrear, repeler o detener.
 
 - ¿Qué hace el patrón state en este caso?
 
-    R// 
+    R// El patrón state es una la maquina de estados de las partículas, determina si esta en el estado de atracción, el esatdo detenido. Cambiando de forma dinámica la logica de la particula.
 
 
 Experimenta con el código y realiza algunas modificaciones para entender mejor su funcionamiento. Por ejemplo:
@@ -60,6 +60,9 @@ Experimenta con el código y realiza algunas modificaciones para entender mejor 
 
 - Modifica el comportamiento de las partículas.
 
-    R//
+    R// 
 
 - Crea otros eventos para notificar a las partículas.
+
+
+### Sesión 3
