@@ -54,15 +54,68 @@ Experimenta con el código y realiza algunas modificaciones para entender mejor 
 
     R//
 
+
+    ```c++
+    void ofApp::setup() {
+
+    for (int i = 0; i < 10; ++i) {
+    Particle* p = ParticleFactory::createParticle("Yellowcomet");
+    particles.push_back(p);
+    addObserver(p);
+    }
+
+    ```
+
+
+    ```c++
+    Particle* ParticleFactory::createParticle(const std::string& type) {         
+
+     else if (type == "Yellowcomet") {
+     particle->size = ofRandom(4, 7);
+     particle->color = ofColor(255, 255, 0); 
+     particle->velocity *= 2;
+    }
+
+    ```
+
+
+
 - Adiciona un nuevo estado.
-
-    R//
-
-- Modifica el comportamiento de las partículas.
 
     R// 
 
+
+    ```c++
+    void Mitosis::update(Particle* particle) {
+    if (particle->size < 20.0f) { // Limita el tamaño máximo
+        particle->size *= 2.0f;
+
+    }
+
+    
+    ```
+
+
 - Crea otros eventos para notificar a las partículas.
 
+    R//
 
-### Sesión 3
+    ```c++
+     else if (key == 'm') {
+     notify("mitosis");
+	}
+    ```
+
+
+
+
+![Cometas amarillos](image-1.png)
+
+![Aumento de tamaño](image-2.png)
+
+
+
+
+
+
+
