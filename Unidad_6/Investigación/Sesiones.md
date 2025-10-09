@@ -208,7 +208,34 @@ Particle* ParticleFactory::createParticle(const std::string& type) {
 Se encargan de crear las las bolas de billar, con su color aleatorio, luego son organizadas su posición. 
 
 
+### Analisis de memoria: 
+
+Se analizo el comprtamiento de la memoria dentro de los observadores, la factory y los estados, ademas de ver el comportamiento de los fps.
 
 
+- crecimiento de observadores.
+
+![Observadores](image-4.png)
+
+
+```c++
+-		observers	{ size=1 }	std::vector<Observer *,std::allocator<Observer *>>
+		[capacity]	1	unsigned __int64
++		[allocator]	allocator	std::_Compressed_pair<std::allocator<Observer *>,std::_Vector_val<std::_Simple_types<Observer *>>,1>
++		[0]	0x00000000033104b0 {position={x=512.000000 y=321.000000 } velocity={x=0.00000000 y=0.00000000 } size=...}	Observer * {Particle}
++		[Vista sin formato]	{_Mypair=allocator }	std::vector<Observer *,std::allocator<Observer *>>
+
+
+```
+
+![Notify](image-5.png)
+
+Al momento de ser asignado el **notify** a las particulas, se puede observar el crecimiento de 0 a 14, no se agregan más porque los saquare **NO TIENEN OBSERVADORES** por que no tienen los observadores, entonces no reciben ningún tipo de evento. 
+
+
+![Comportamiento general](image-6.png)
+
+
+[video comportamiento mesa de billar v2](https://youtu.be/v-bLe-5Ha9I)
 
 

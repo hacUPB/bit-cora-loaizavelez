@@ -33,11 +33,11 @@ public:
 class Particle : public Observer {
 public:
     Particle();
-    ~Particle();
+    virtual ~Particle();
 
-    void update();
-    void draw();
-    void onNotify(const std::string& event) override;
+    virtual void update();
+    virtual void draw();
+    virtual void onNotify(const std::string& event) override;
     void setState(State* newState);
 
     ofVec2f position;
@@ -48,6 +48,15 @@ public:
 
 private:
     State* state;
+};
+
+
+class SquareParticle : public Particle {
+public:
+    SquareParticle();
+    void update() override;
+    void draw() override;
+    void onNotify(const std::string& event) override;
 };
 
 class StaticState : public State {
@@ -104,12 +113,11 @@ void Subject::notify(const std::string& event) {
     }
 }
 
-// StaticState
+// States
 void StaticState::update(Particle* particle) {
     particle->velocity.set(0, 0);
 }
 
-// MovingState
 void MovingState::onEnter(Particle* particle) {
     particle->velocity = ofVec2f(ofRandom(-5, 5), ofRandom(-5, 5));
 }
@@ -124,7 +132,6 @@ void MovingState::update(Particle* particle) {
     }
 }
 
-// NoBorderState
 void NoBorderState::update(Particle* particle) {
     particle->position += particle->velocity;
 }
@@ -178,8 +185,34 @@ void Particle::onNotify(const std::string& event) {
     }
 }
 
-// ParticleFactory
+// SquareParticle
+SquareParticle::SquareParticle() {
+    size = 10;
+    color = ofColor::fromHsb(ofRandom(0, 255), 200, 255);
+    velocity = ofVec2f(ofRandom(-2, 2), ofRandom(-2, 2));
+}
+
+void SquareParticle::update() {
+    position += velocity;
+    if (position.x < 0 || position.x > ofGetWidth()) velocity.x *= -1;
+    if (position.y < 0 || position.y > ofGetHeight()) velocity.y *= -1;
+}
+
+void SquareParticle::draw() {
+    ofSetColor(color);
+    ofDrawRectangle(position.x - size, position.y - size, size * 2, size * 2);
+}
+
+void SquareParticle::onNotify(const std::string& event) {
+    // No hace nada
+}
+
+// Factory
 Particle* ParticleFactory::createParticle(const std::string& type) {
+    if (type == "square") {
+        return new SquareParticle();
+    }
+
     Particle* p = new Particle();
     if (type == "ball") {
         p->color = ofColor::fromHsb(ofRandom(0, 255), 200, 255);
@@ -193,9 +226,15 @@ void ofApp::setup() {
 
     float ballSize = 15;
     float spacing = ballSize * 2.1;
+    float squareSpacing = 20;
+
     ofVec2f center(ofGetWidth() / 2, ofGetHeight() / 2);
 
+    int numSquares = 0;
+    int squaresPerRow = 3;
+    int squareRows = 2;
     int ballIndex = 0;
+
     for (int row = 0; row < 5; ++row) {
         int ballsInRow = row + 1;
         float rowY = center.y + (row - 2) * spacing;
@@ -209,6 +248,21 @@ void ofApp::setup() {
             particles.push_back(p);
             addObserver(p);
             ballIndex++;
+        }
+    }
+
+    for (int row = 0; row < squareRows; ++row) {
+        float rowY = center.y - squareSpacing + row * squareSpacing;
+        float rowStartX = center.x - (squareSpacing * (squaresPerRow - 1)) / 2;
+
+        for (int col = 0; col < squaresPerRow; ++col) {
+            if (numSquares >= 6) break;
+            Particle* p = ParticleFactory::createParticle("square");
+            p->position = ofVec2f(rowStartX + col * squareSpacing, rowY);
+            p->originalPosition = p->position;
+            particles.push_back(p);
+            // No se agrega como observer
+            numSquares++;
         }
     }
 }
@@ -229,7 +283,21 @@ void ofApp::draw() {
         ofNoFill();
         ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
     }
+
+    ofSetColor(255);
+    ofDrawBitmapString("Press 'l' to launch, 'r' to reset, 'd' to disable borders", 10, ofGetHeight() - 10);
+
+    int numCirculos = 15;
+    int numCuadrados = 6;
+    int fps = static_cast<int>(ofGetFrameRate());
+
+    std::string info = "Cantidad circulos: " + std::to_string(numCirculos) +
+        "\nCantidad cuadrados: " + std::to_string(numCuadrados) +
+        "\nFPS: " + std::to_string(fps);
+
+    ofDrawBitmapString(info, 10, 20);
 }
+
 
 void ofApp::keyPressed(int key) {
     if (key == 'l') {
