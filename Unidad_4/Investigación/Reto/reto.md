@@ -185,6 +185,9 @@ star esta guardado en el heap en las coordenadas (x=867.526367 y=591.135193), el
 la lista enlazada, contiene los colores en 		v	0x000000000014f764 "ÌÌÌÌ...	unsigned char[4] la lista enlazada
 
 
-<video controls src="video unidad 4.mp4" title="Title"></video>
+[video reto Unidad 4](https://youtu.be/Ja95fN6ecH8)
+
+
+
 
  
