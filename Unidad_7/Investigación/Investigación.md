@@ -2,11 +2,11 @@
 
 - ¿Qué son los vértices?
 
-    R// 
+    R// Son puntos en una figura geometrica, se puede decir que las esquinas 
 
 - ¿Con qué figura geométrica se dibuja en 3D?
 
-    R//
+    R// Triángulos y polígonos.
 
 - ¿Qué es un shader?
 
@@ -46,6 +46,15 @@
 
 
 ### Actvidad 2
+
+
+
+**Observa la salida.**
+
+Luego de aplicar la modificación en las lineas ```shader.begin();``` y ```shader.end();```
+
+![Experimento](image.png) 
+
 
 - ¿Cómo funciona?
 
