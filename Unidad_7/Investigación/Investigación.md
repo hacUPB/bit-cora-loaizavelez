@@ -288,7 +288,7 @@ void main()
 }
 
 ```
-En este ejemplo se puede ver la inclusión se los Uniform, el valor constante del uniform es declarado en el .vert como un float time. Se usan para el comportamiento de las animaciones. Se actualiza cada frame permitiendo el movimiento de los vertices de forma vertical. 
+En este ejemplo se puede ver la inclusión se los Uniform, el valor constante del uniform es declarado en el .vert como un float time. Se usan para el comportamiento de las animaciones. Se actualiza cada frame permitiendo el movimiento de los vertices de forma vertical. [video demostrativo](https://youtu.be/sUMsdNnFF0U)
 
 
 ### Ejemplo 3, actividad 4 
@@ -409,6 +409,15 @@ void main()
 
 
 ```
+
+![Reemplazo imagenes](image-6.png)
+
+
+si se modifica ```ofTranslate(ofGetWidth()/2, ofGetHeight()/2);``` y se retira la divisón se ve de la siguiente forma:
+
+
+![acortada](image-7.png)
+
 
 
 ### Ejemplo 5, Masking
