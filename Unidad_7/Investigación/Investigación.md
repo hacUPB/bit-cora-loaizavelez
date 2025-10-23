@@ -389,12 +389,76 @@ void main()
 
 
 ```
+se usa el uniform de la posición del mouse para actualizar la posición de los vectores, se usa el ```uniform mat4 modelViewProjectionMatrix;``` luego el uniform flotante del mousex se envia al textcoordvarying que sus datos de saalida son el mover la textura.
 
+```c++
+OF_GLSL_SHADER_HEADER
 
-```
+// this is how we receive the texture
+uniform sampler2D tex0;
+uniform vec2 resolution;
+
+in vec2 texCoordVarying;
+
+out vec4 outputColor;
+ 
+void main()
+{
+    outputColor = texture(tex0, texCoordVarying / resolution);
+}
 
 
 ```
 
 
 ### Ejemplo 5, Masking
+
+**.vert**
+
+```c++
+OF_GLSL_SHADER_HEADER
+
+// these are for the programmable pipeline system
+uniform mat4 modelViewProjectionMatrix;
+
+in vec4 position;
+in vec2 texcoord;
+
+out vec2 texCoordVarying;
+
+void main()
+{
+    texCoordVarying = texcoord;
+    
+	gl_Position = modelViewProjectionMatrix * position;
+}
+
+
+```
+
+
+
+**.frag**
+
+
+```c++
+OF_GLSL_SHADER_HEADER
+
+uniform sampler2D tex0;
+uniform sampler2D imageMask;
+
+in vec2 texCoordVarying;
+
+out vec4 outputColor;
+
+void main()
+{
+    vec4 texel0 = texture(tex0, texCoordVarying);
+    vec4 texel1 = texture(imageMask, texCoordVarying);
+    outputColor = vec4(texel0.rgb, texel0.a * texel1.a);
+}
+
+```
+
+
+![Masking](image-5.png)
