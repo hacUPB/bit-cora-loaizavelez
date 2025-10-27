@@ -222,6 +222,48 @@ Luego de revertir la modificación en las lineas ```shader.begin();``` y ```shad
     R// El primer paso es cargar los shader con el shader.load, toma los colores del RGB y su comportamiento, luego son cargados con el shader.begin() y luego se cierra con el shader.end, en este proceso se usa la pisición del .vert y se rellena con el   .frag proyectando la imagen. 
 
 
+**Modifica el código de la actividad para cambiar el color de cada uno de los píxeles de la pantalla personalizando el fragment shader.**
+
+R// Para este ejercicio se va a hacer uso del ejemplo 2. 
+
+ El resultado obtenido es una maya en blanco, no se encontro el error que cause esa característica. Se cambio el archivo (.frag) y se cambio sustancialmente comparado con el fragmento anterior. No es necesario modificar el (.vert) este se enacraga de modificar las posiciones de los pixeles con ````float displacementY = sin(time + (position.x / 100.0)) * displacementHeight;.````
+
+
+**Sección modificada**
+
+    ```c++
+    OF_GLSL_SHADER_HEADER
+
+    void main()
+    {
+    // Usa la posición del píxel directamente para generar color
+    float r = gl_FragCoord.x / windoWith;
+    float g = gl_FragCoord.y / windowHeigt;
+    float b = 1.0;
+    float a = 1.0
+
+    gl_FragColor = vec4(r, g, b, a);
+    }
+
+    ```
+
+![Experimentación](image-8.png)
+
+
+**Explicación**
+
+    R// se uso este principio del color quad. Mas que todo se usa esta linea de código. 
+
+    ```c++
+    float r = gl_FragCoord.x / windowWidth;
+	float g = gl_FragCoord.y / windowHeight;
+	float b = 1.0;
+	float a = 1.0;
+	outputColor = vec4(r, g, b, a);
+
+    ```
+    Para normalizar y asigar el color del pixel según su posición en pantalla.
+
 ### Actividad 4
 
 - ¿Qué hace el código del ejemplo?
@@ -230,7 +272,7 @@ Luego de revertir la modificación en las lineas ```shader.begin();``` y ```shad
 
 - ¿Cómo funciona el código de aplicación, los shaders y cómo se comunican estos?
 
-    R// Usando los Uniforms con la posición del mouse, una longitud del mouse se le asigna un rango de color dependiendo de la posición
+    R// Usando los Uniforms con la posición del mouse, una longitud del mouse se le asigna un rango de color dependiendo de la posición. El vertex se encarga de asignar la posición de los vertices en la pantalla y el fragment shader, ya explciado en el ejercicio anterior, modifca los colores de los píxeles. 
 
 - Realiza modificaciones a ofApp.cpp y al vertex shader para conseguir otros comportamientos.
 
@@ -244,7 +286,79 @@ Luego de revertir la modificación en las lineas ```shader.begin();``` y ```shad
 
 ## Ejemplos OF
 
-### Ejemplo 2, actividad 3
+### Ejemplo 2, actividad 3     
+
+
+
+
+**OfApp**
+
+```c++
+#include "ofApp.h"
+
+//--------------------------------------------------------------
+void ofApp::setup(){
+	if(ofIsGLProgrammableRenderer()){
+		shader.load("shadersGL3/shader");
+	}else{
+		shader.load("shadersGL2/shader");
+	}
+
+	float planeScale = 0.75;
+	int planeWidth = ofGetWidth() * planeScale;
+	int planeHeight = ofGetHeight() * planeScale;
+	int planeGridSize = 20;
+	int planeColums = planeWidth / planeGridSize;
+	int planeRows = planeHeight / planeGridSize;
+
+	plane.set(planeWidth, planeHeight, planeColums, planeRows, OF_PRIMITIVE_TRIANGLES);
+}
+
+//--------------------------------------------------------------
+void ofApp::update(){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::draw(){
+
+	float percentX = mouseX / (float)ofGetWidth();
+	percentX = ofClamp(percentX, 0, 1);
+
+	// the mouse/touch X position changes the color of the plane.
+	// please have a look inside the frag shader,
+	// we are using the globalColor value that OF passes into the shader everytime you call ofSetColor().
+	ofColor colorLeft = ofColor::magenta;
+	ofColor colorRight = ofColor::cyan;
+	ofColor colorMix = colorLeft.getLerped(colorRight, percentX);
+	ofSetColor(colorMix);
+
+	shader.begin();
+
+	// a lot of the time you have to pass in variables into the shader.
+	// in this case we need to pass it the elapsed time for the sine wave animation.
+	shader.setUniform1f("time", ofGetElapsedTimef());
+
+	// translate plane into center screen.
+	float tx = ofGetWidth() / 2;
+	float ty = ofGetHeight() / 2;
+	ofTranslate(tx, ty);
+
+	// the mouse/touch Y position changes the rotation of the plane.
+	float percentY = mouseY / (float)ofGetHeight();
+	float rotation = ofMap(percentY, 0, 1, -60, 60, true) + 60;
+	ofRotateDeg(rotation, 1, 0, 0);
+
+	plane.drawWireframe();
+
+	shader.end();
+}
+
+
+
+
+```
+
 
 **.vert**
 
