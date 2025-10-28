@@ -276,13 +276,239 @@ R// Para este ejercicio se va a hacer uso del ejemplo 2.
 
 - Realiza modificaciones a ofApp.cpp y al vertex shader para conseguir otros comportamientos.
 
-    R//
+    R// Se modifico la malla para que tuviera el comportamiento de la actividad anterior del movimiento de la función seno. Para esto se modifico  ```ofApp()``` agregando únicamente la linea ```shader.setUniform1f("time", ofGetElapsedTimef());``` este función permite dar el movimiento.
+
+    Dentro del (.vert) se modifico:
+
+
+
+    ```c++
+    OF_GLSL_SHADER_HEADER
+
+    uniform mat4 modelViewProjectionMatrix;
+    in vec4 position;
+
+    uniform float mouseRange;
+    uniform vec2 mousePos;
+    uniform vec4 mouseColor;
+    uniform float time;
+
+    void main()
+    {
+        vec4 pos = position;
+
+        // Movimiento seno simple
+        pos.y += sin(pos.x * 0.05 + time) * 10.0;
+
+        // Deformación por proximidad al mouse (opcional, puedes dejarla)
+        vec2 dir = pos.xy - mousePos;
+        float dist = length(dir);
+
+        if(dist > 0.0 && dist < mouseRange) {
+            float distNorm = 1.0 - dist / mouseRange;
+            dir *= distNorm;
+            pos.xy += dir;
+        }
+
+        gl_Position = modelViewProjectionMatrix * pos;
+    }
+     
+    ```
 
 - Realiza modificaciones al fragment shader para conseguir otros comportamientos.
 
-    R//
+    R// Se uso el princio del color quad para que el color de los vertices sea diferente en cada posición. La otra versión se usa el movimiento del mouse para cambiar el color de los vertices, sin embargo el comportamiento no es el esperado.
 
 
+
+**Primera versión**
+
+
+.frag
+
+```c++
+#version 150
+
+out vec4 outputColor;
+
+void main()
+{
+    // Tamaño fijo de ventana (ajústalo si usas otra resolución)
+    float windowWidth = 1024.0;
+    float windowHeight = 768.0;
+
+    // Color según posición del píxel
+    float r = gl_FragCoord.x / windowWidth;
+    float g = gl_FragCoord.y / windowHeight;
+    float b = 1.0;
+    float a = 1.0;
+
+    outputColor = vec4(r, g, b, a);
+}
+```
+
+
+.vert
+
+
+```c++
+OF_GLSL_SHADER_HEADER
+
+uniform mat4 modelViewProjectionMatrix;
+in vec4 position;
+
+uniform float mouseRange;
+uniform vec2 mousePos;
+uniform vec4 mouseColor;
+uniform float time;
+
+void main()
+{
+    vec4 pos = position;
+
+    // Movimiento seno simple
+    pos.y += sin(pos.x * 0.05 + time) * 10.0;
+
+    // Deformación por proximidad al mouse (opcional, puedes dejarla)
+    vec2 dir = pos.xy - mousePos;
+    float dist = length(dir);
+
+    if(dist > 0.0 && dist < mouseRange) {
+        float distNorm = 1.0 - dist / mouseRange;
+        dir *= distNorm;
+        pos.xy += dir;
+    }
+
+    gl_Position = modelViewProjectionMatrix * pos;
+}
+
+```
+
+
+ofApp
+
+
+```c++
+
+#include "ofApp.h"
+
+//--------------------------------------------------------------
+void ofApp::setup(){
+	if(ofIsGLProgrammableRenderer()){
+		shader.load("shadersGL3/shader");
+	}else{
+		shader.load("shadersGL2/shader");
+	}
+
+	int planeWidth = ofGetWidth();
+	int planeHeight = ofGetHeight();
+	int planeGridSize = 20;
+	int planeColums = planeWidth / planeGridSize;
+	int planeRows = planeHeight / planeGridSize;
+	
+	plane.set(planeWidth, planeHeight, planeColums, planeRows, OF_PRIMITIVE_TRIANGLES);
+}
+
+//--------------------------------------------------------------
+void ofApp::update(){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::draw(){
+	
+	shader.begin();
+
+	shader.setUniform1f("time", ofGetElapsedTimef()); 
+	
+	// center screen.
+	float cx = ofGetWidth() / 2.0;
+	float cy = ofGetHeight() / 2.0;
+	
+	// the plane is being position in the middle of the screen,
+	// so we have to apply the same offset to the mouse coordinates before passing into the shader.
+	float mx = mouseX - cx;
+	float my = mouseY - cy;
+	
+	// we can pass in a single value into the shader by using the setUniform1 function.
+	// if you want to pass in a float value, use setUniform1f.
+	// if you want to pass in a integer value, use setUniform1i.
+	shader.setUniform1f("mouseRange", 150);
+	
+	// we can pass in two values into the shader at the same time by using the setUniform2 function.
+	// inside the shader these two values are set inside a vec2 object.
+	shader.setUniform2f("mousePos", mx, my);
+	
+	// color changes from magenta to blue when moving the mouse from left to right.
+	float percentX = mouseX / (float)ofGetWidth();
+	percentX = ofClamp(percentX, 0, 1);
+	ofFloatColor colorLeft = ofColor::magenta;
+	ofFloatColor colorRight = ofColor::blue;
+	ofFloatColor colorMix = colorLeft.getLerped(colorRight, percentX);
+	
+	// create a float array with the color values.
+	float mouseColor[4] = {colorMix.r, colorMix.g, colorMix.b, colorMix.a};
+	
+	// we can pass in four values into the shader at the same time as a float array.
+	// we do this by passing a pointer reference to the first element in the array.
+	// inside the shader these four values are set inside a vec4 object.
+	shader.setUniform4fv("mouseColor", mouseColor);
+	
+	ofTranslate(cx, cy);
+
+	plane.drawWireframe();
+	
+	shader.end();
+}
+
+//--------------------------------------------------------------
+void ofApp::keyPressed(int key){
+	
+}
+
+//--------------------------------------------------------------
+void ofApp::keyReleased(int key){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseMoved(int x, int y){
+	
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseDragged(int x, int y, int button){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mousePressed(int x, int y, int button){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::mouseReleased(int x, int y, int button){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::windowResized(int w, int h){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::gotMessage(ofMessage msg){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::dragEvent(ofDragInfo dragInfo){ 
+
+}
+
+
+
+```
 
 ## Ejemplos OF
 
