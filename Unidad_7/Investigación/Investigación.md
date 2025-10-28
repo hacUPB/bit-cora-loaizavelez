@@ -116,7 +116,7 @@ Luego de revertir la modificación en las lineas ```shader.begin();``` y ```shad
 
     R// Si, esta dentro de este codigo:
 
-    ```c++
+    ```cpp
     OF_GLSL_SHADER_HEADER
 
     uniform mat4 modelViewProjectionMatrix;
@@ -136,8 +136,8 @@ Luego de revertir la modificación en las lineas ```shader.begin();``` y ```shad
 
     R// Aquí se pinta el valor del pixel dentro la coordenada asignada.
 
-    ```c++
-        OF_GLSL_SHADER_HEADER
+    ```cpp
+    OF_GLSL_SHADER_HEADER
 
     out vec4 outputColor;
 
@@ -231,7 +231,7 @@ R// Para este ejercicio se va a hacer uso del ejemplo 2.
 
 **Sección modificada**
 
-    ```c++
+    ```cpp
     OF_GLSL_SHADER_HEADER
 
     void main()
@@ -254,7 +254,7 @@ R// Para este ejercicio se va a hacer uso del ejemplo 2.
 
     R// se uso este principio del color quad. Mas que todo se usa esta linea de código. 
 
-    ```c++
+    ```cpp
     float r = gl_FragCoord.x / windowWidth;
 	float g = gl_FragCoord.y / windowHeight;
 	float b = 1.0;
@@ -282,7 +282,7 @@ R// Para este ejercicio se va a hacer uso del ejemplo 2.
 
 
 
-    ```c++
+    ```cpp
     OF_GLSL_SHADER_HEADER
 
     uniform mat4 modelViewProjectionMatrix;
@@ -326,7 +326,7 @@ R// Para este ejercicio se va a hacer uso del ejemplo 2.
 
 .frag
 
-```c++
+```cpp
 #version 150
 
 out vec4 outputColor;
@@ -351,7 +351,7 @@ void main()
 .vert
 
 
-```c++
+```cpp
 OF_GLSL_SHADER_HEADER
 
 uniform mat4 modelViewProjectionMatrix;
@@ -388,7 +388,7 @@ void main()
 ofApp
 
 
-```c++
+```cpp
 
 #include "ofApp.h"
 
@@ -519,7 +519,7 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 **OfApp**
 
-```c++
+```cpp
 #include "ofApp.h"
 
 //--------------------------------------------------------------
@@ -588,7 +588,7 @@ void ofApp::draw(){
 
 **.vert**
 
-```c++
+```cpp
 OF_GLSL_SHADER_HEADER
 
 // these are for the programmable pipeline system
@@ -615,7 +615,7 @@ void main()
 ```
 **.frag**
 
-```c++
+```cpp
 OF_GLSL_SHADER_HEADER
 
 uniform vec4 globalColor;
@@ -634,7 +634,7 @@ En este ejemplo se puede ver la inclusión se los Uniform, el valor constante de
 ### Ejemplo 3, actividad 4 
 
 
-```c++
+```cpp
 
 OF_GLSL_SHADER_HEADER
 
@@ -682,7 +682,7 @@ void main()
 
 
 
-```c++
+```cpp
 OF_GLSL_SHADER_HEADER
 
 out vec4 outputColor;
@@ -701,7 +701,7 @@ void main()
 ### Ejemplo 4, texturas 
 
 
-```c++
+```cpp
 OF_GLSL_SHADER_HEADER
 
 // these are for the programmable pipeline system and are passed in
@@ -731,7 +731,7 @@ void main()
 ```
 se usa el uniform de la posición del mouse para actualizar la posición de los vectores, se usa el ```uniform mat4 modelViewProjectionMatrix;``` luego el uniform flotante del mousex se envia al textcoordvarying que sus datos de saalida son el mover la textura.
 
-```c++
+```cpp
 OF_GLSL_SHADER_HEADER
 
 // this is how we receive the texture
@@ -764,7 +764,7 @@ si se modifica ```ofTranslate(ofGetWidth()/2, ofGetHeight()/2);``` y se retira l
 
 **.vert**
 
-```c++
+```cpp
 OF_GLSL_SHADER_HEADER
 
 // these are for the programmable pipeline system
@@ -790,7 +790,7 @@ void main()
 **.frag**
 
 
-```c++
+```cpp
 OF_GLSL_SHADER_HEADER
 
 uniform sampler2D tex0;
