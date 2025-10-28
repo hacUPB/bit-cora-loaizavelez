@@ -251,18 +251,17 @@ R// Para este ejercicio se va a hacer uso del ejemplo 2.
 
 
 **Explicación**
+ R// se uso este principio del color quad. Mas que todo se usa esta linea de código. 
 
-    R// se uso este principio del color quad. Mas que todo se usa esta linea de código. 
-
-    ```cpp
+```cpp
     float r = gl_FragCoord.x / windowWidth;
 	float g = gl_FragCoord.y / windowHeight;
 	float b = 1.0;
 	float a = 1.0;
 	outputColor = vec4(r, g, b, a);
 
-    ```
-    Para normalizar y asigar el color del pixel según su posición en pantalla.
+```
+ Para normalizar y asigar el color del pixel según su posición en pantalla.
 
 ### Actividad 4
 
@@ -314,6 +313,8 @@ R// Para este ejercicio se va a hacer uso del ejemplo 2.
     }
      
     ```
+
+[Video experimento del seno seno](https://youtu.be/RvHZJt0Qos8)
 
 - Realiza modificaciones al fragment shader para conseguir otros comportamientos.
 
@@ -758,6 +759,8 @@ si se modifica ```ofTranslate(ofGetWidth()/2, ofGetHeight()/2);``` y se retira l
 
 ![acortada](image-7.png)
 
+
+[video de prueba](https://youtu.be/mRzf-m9YGJ8)
 
 
 ### Ejemplo 5, Masking
