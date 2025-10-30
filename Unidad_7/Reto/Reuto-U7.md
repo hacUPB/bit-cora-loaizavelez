@@ -109,12 +109,12 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 
 ```
-
+### Vert
 
 ```cpp
 OF_GLSL_SHADER_HEADER
 
-// Uniformes
+
 uniform mat4 modelViewProjectionMatrix;
 uniform float time;
 uniform float mouseRange;
@@ -127,20 +127,20 @@ in vec4 position;
 in vec2 texcoord;
 in vec4 color;
 
-// Salidas
+
 out vec2 texCoordVarying;
 out vec4 globalColor;
 
 void main()
 {
-    // Movimiento seno simple en Y
+    
     float displacementHeight = 100.0;
     float displacementY = sin(time + (position.x / 100.0)) * displacementHeight;
 
     vec4 pos = position;
     pos.y += displacementY;
 
-    // Deformación por proximidad al mouse
+    
     vec2 dir = pos.xy - mousePos;
     float dist = length(dir);
 
@@ -150,17 +150,54 @@ void main()
         pos.xy += dir;
     }
 
-    // Transformación final
+    
     gl_Position = modelViewProjectionMatrix * pos;
 
-    // Coordenadas de textura desplazadas por mouseX
+   
     texCoordVarying = vec2(texcoord.x + mouseX, texcoord.y);
+    //texCoordVarying = texcoord;
 
-    // Color para el fragment shader
+   
     globalColor = color;
 }
+```
+
+### .frag
+
+```cpp
+OF_GLSL_SHADER_HEADER
+
+// this is how we receive the texture
+uniform sampler2D tex0;
+uniform vec2 resolution;
+
+
+uniform sampler2D imageMask;
+
+
+in vec2 texCoordVarying;
+
+out vec4 outputColor;
+ 
+void main()
+{
+    outputColor = texture(tex0, texCoordVarying / resolution);
+    vec4 texel0 = texture(tex0, texCoordVarying);
+    vec4 texel1 = texture(imageMask, texCoordVarying);
+    outputColor = vec4(texel0.rgb, texel0.a * texel1.a);
+}
+
+
 ```
 
 ![primer resultado](image.png)
 
 ![Segundo resultado](image-1.png)
+
+![Tercer resultado](image-2.png)
+
+![Cuarto resultado](image-3.png)
+
+![Quinto resultado](image-4.png)
+
+[Video interactividad](https://youtu.be/8I9nz5Rhmqo)
